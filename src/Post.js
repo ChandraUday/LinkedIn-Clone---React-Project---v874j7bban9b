@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import React, { useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import "./css/post.css"
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -7,7 +7,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/Share';
 import SendIcon from '@mui/icons-material/Send';
 
-function Post({name,description,message,photoURL}) {
+const Post = forwardRef(({name,description,message,photoURL},ref)=> {
 
      const [isLiked, setIsLiked] = useState(false);
      const [isShared, setIsShared] = useState(false);
@@ -27,9 +27,8 @@ function Post({name,description,message,photoURL}) {
       };
 
 
-
   return (
-    <div className="posts">
+    <div className="posts" ref={ref}>
         <div className="post_header">
             <div className="post_headerLeft">
                 <Avatar src={photoURL}/>
@@ -46,7 +45,7 @@ function Post({name,description,message,photoURL}) {
         </div>
 
         <div className="post_footer">
-            <div className="post_footer_option" onClick={handleClick}>
+             <div className="post_footer_option" onClick={handleClick}>
                  <ThumbUpAltIcon style={{ color: isLiked ? 'red' : 'black' }}/>
                  <span>Like</span>
             </div>
@@ -70,5 +69,6 @@ function Post({name,description,message,photoURL}) {
     </div>
   )
 }
+)
 
 export default Post
