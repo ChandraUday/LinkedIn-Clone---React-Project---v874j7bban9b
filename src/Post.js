@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import React, { forwardRef } from 'react'
+import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import "./css/post.css"
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
@@ -7,9 +7,29 @@ import CommentIcon from '@mui/icons-material/Comment';
 import ShareIcon from '@mui/icons-material/Share';
 import SendIcon from '@mui/icons-material/Send';
 
-const Post = forwardRef(({name,description,message,photoURL},ref)=> {
+function Post({name,description,message,photoURL}) {
+
+     const [isLiked, setIsLiked] = useState(false);
+     const [isShared, setIsShared] = useState(false);
+     const [isSend, setIsSend] = useState(false);
+
+     const handleClick = () => {
+       setIsLiked(!isLiked);
+     };
+     
+
+     const handleClick1 = () => {
+          setIsShared(!isShared);
+     };
+
+        const handleClick2 = () => {
+          setIsSend(!isSend);
+      };
+
+
+
   return (
-    <div className="posts" ref={ref}>
+    <div className="posts">
         <div className="post_header">
             <div className="post_headerLeft">
                 <Avatar src={photoURL}/>
@@ -26,8 +46,8 @@ const Post = forwardRef(({name,description,message,photoURL},ref)=> {
         </div>
 
         <div className="post_footer">
-            <div className="post_footer_option">
-                 <ThumbUpAltIcon/>
+            <div className="post_footer_option" onClick={handleClick}>
+                 <ThumbUpAltIcon style={{ color: isLiked ? 'red' : 'black' }}/>
                  <span>Like</span>
             </div>
 
@@ -36,13 +56,13 @@ const Post = forwardRef(({name,description,message,photoURL},ref)=> {
                  <span>Comment</span>
             </div>
 
-            <div className="post_footer_option">
-                 <ShareIcon/>
+            <div className="post_footer_option" onClick={handleClick1}>
+                 <ShareIcon style={{ color: isShared ? 'blue' : 'black'}}/>
                  <span>Share</span>
             </div>
 
-            <div className="post_footer_option">
-                 <SendIcon/>
+            <div className="post_footer_option" onClick={handleClick2}>
+                 <SendIcon style={{ color: isSend ? 'green' : 'black'}}/>
                  <span>Send</span>
             </div>
         </div>
@@ -50,6 +70,5 @@ const Post = forwardRef(({name,description,message,photoURL},ref)=> {
     </div>
   )
 }
-)
 
 export default Post
