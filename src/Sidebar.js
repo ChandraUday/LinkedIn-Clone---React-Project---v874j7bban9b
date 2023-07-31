@@ -12,7 +12,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar_profile">
-        <img src="https://cdn.pixabay.com/photo/2018/01/24/18/05/background-3104413_640.jpg"/>
+        <img src="https://www.freecodecamp.org/news/content/images/2021/06/w-qjCHPZbeXCQ-unsplash.jpg"/>
 
                  <div className="profile_details">
                     <Avatar src={user.photoURL}/>
